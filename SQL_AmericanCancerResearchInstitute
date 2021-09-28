@@ -1,0 +1,294 @@
+Creating Tables for CampusQTarget
+with three attributes which are Campus_QTarget_ID, CampusID, Year
+
+Create Table CAMPUS_QTARGET (
+Campus_QTarget_ID number(10,2) not null primary key,
+CampusID varchar2(6) not null,
+Year number, 
+Q1 integer,
+Q2 integer,
+Q3 integer,
+Q4 integer
+);
+
+Creating Tables for Campus
+with two attributes which are CampusID and CampusName.
+
+Create Table CAMPUS (
+CampusID varchar2(6) not null primary key,
+CampusName varchar2(11) not null
+);
+
+Creating Tables for Programs_Campus
+with two attributes which are CampusID and ProgramID
+
+Create Table PROGRAMS_CAMPUS (
+CampusID varchar2(6) not null,
+ProgramID varchar2(7) not null
+);
+
+Creating Tables for Programs
+with two attributes which are ProgramID and Program_Desc.
+
+Create Table PROGRAMS (
+ProgramID varchar2(7) not null,
+Program_Desc varchar2(50) not null
+);
+
+Creating Tables for Contribution
+with six attributes which are ContributionID, MemberID, DonorID, ProgramID, Contrib_Date, Amount.
+
+Create Table CONTRIBUTION (
+ContributionID varchar2(10) not null primary key,
+MemberID varchar2(20) not null,
+DonorID varchar2(30) not null,
+ProgramID varchar2(10) not null,
+Contrib_Date date not null,
+Amount number(10,2)
+);
+
+Creating Tables for Committee_Member
+with two attributes which are MemberID, MemberName
+
+Create Table COMMITTEE_MEMBER (
+MemberID varchar2(20) not null primary key,
+MemberName varchar2(10) not null
+);
+
+Creating Tables for Program_Committee 
+with two attributes which are ProgramID and MemberID.
+
+Create Table PROGRAM_COMMITTEE (
+ProgramID varchar2(7) not null,
+MemberID varchar2(20) not null
+);
+
+Creating Tables for Member_Donor
+with two attributes which are DonorID and MemberID. 
+
+Create Table MEMBER_DONOR (
+DonorID varchar2(30) not null,
+MemberID varchar2(20) not null
+);
+
+Creating Tables for CMember_Qtarget
+with three attributes which are Cmember_Qtarget_ID, MemberID and Year. 
+
+Create Table CMEMBER_QTARGET (
+CMember_QTarget_ID number(10,2) not null primary key,
+MemberID varchar2(20) not null,
+Year number,
+Q1 integer,
+Q2 integer,
+Q3 integer,
+Q4 integer
+);
+
+Creating Tables for DonorType_QTarget
+with three attributes which are DonorType_Qtarget_ID, DonorTypeID and Year.
+
+Create Table DONORTYPE_QTARGET (
+DonorType_QTarget_ID number(10,2) not null primary key,
+DonorTypeID varchar2(1) not null,
+Year number,
+Q1 integer,
+Q2 integer,
+Q3 integer,
+Q4 integer
+);
+
+Creating Tables for DonorType 
+with two attributes which are DonorTypeID and Description.  
+
+Create Table DONORTYPE (
+DonorTypeID varchar2(1) not null primary key,
+Description varchar2(30)
+);
+
+
+Creating Tables for Donor 
+with four attributes which are DonorID, DonorTypeID, Description, AnnualProjection.
+
+Create Table DONOR (
+DonorID varchar2(30) not null primary key, 
+DonorTypeID varchar2(1) not null,
+Description varchar2(50),
+AnnualProjection number(10,2)
+);
+
+Insert of data into Campus_QTarget table
+
+INSERT INTO campus_qtarget VALUES (1234, 'BC001', 2021, 400, 400, 500, 600);
+INSERT INTO campus_qtarget VALUES (1235, 'AC001', 2021, 200, 250, 250, 300);
+INSERT INTO campus_qtarget VALUES (1236, 'HC001', 2021, 75, 100, 125, 150);
+INSERT INTO campus_qtarget VALUES (1237, 'MC001', 2021, 100, 100, 150, 150);
+
+Insert of data into Campus table
+
+INSERT INTO CAMPUS VALUES('BC001', 'Bethesda');
+INSERT INTO CAMPUS VALUES('AC001', 'Atlanta');
+INSERT INTO CAMPUS VALUES('HC001', 'Houston');
+INSERT INTO CAMPUS VALUES('MC001', 'Minneapolis');
+
+Insert of data into Programs_Campus table
+
+INSERT INTO PROGRAMS_CAMPUS VALUES('BC001', 'BRP001');
+INSERT INTO PROGRAMS_CAMPUS VALUES('AC001', 'KRP001');
+INSERT INTO PROGRAMS_CAMPUS VALUES('HC001', 'LRP001');
+INSERT INTO PROGRAMS_CAMPUS VALUES ('MC001', 'SRP001');
+
+Insert of data into Programs  table 
+
+INSERT INTO PROGRAMS VALUES('BRP001', 'Brain Research Program');
+INSERT INTO PROGRAMS VALUES('KRP001', 'Kidney Research Program');
+INSERT INTO PROGRAMS VALUES('LRP001', 'Liver Research Program');
+INSERT INTO PROGRAMS VALUES('SRP001', 'Skin Research Program');
+
+Insert of data into Contribution table
+
+INSERT INTO CONTRIBUTION VALUES('CONTRIB00', 'CH105', 'DE122', 'BRP001', '03-JAN-2021', 200);
+INSERT INTO CONTRIBUTION VALUES('CONTRIB002', 'SK103', 'GO132', 'KRP001', '07-JAN-2021', 150);
+INSERT INTO CONTRIBUTION VALUES('CONTRIB003', 'DA101', 'HU023', 'LRP001', '27-JAN-2021', 50);
+INSERT INTO CONTRIBUTION VALUES('CONTRIB004', 'SO102', 'GA167', 'SRP001', '25-FEB-2021', 100);
+INSERT INTO CONTRIBUTION VALUES('CONTRIB005', 'DA101', 'DE122', 'SRP001', '23-FEB-2021', 50);
+INSERT INTO CONTRIBUTION VALUES('CONTRIB006', 'LE106', 'ATT123','‘BRP001', '03-MAR-2021', 100);
+INSERT INTO CONTRIBUTION VALUES('CONTRIB007', 'DA101', 'DE155', 'BRP001', '30-MAR-2021', 75);
+INSERT INTO CONTRIBUTION VALUES('CONTRIB008', 'OB104', 'GA167', 'LRP001', '15-APR-2021', 50);
+INSERT INTO CONTRIBUTION VALUES('CONTRIB009', 'SO102', 'TE145', 'KRP001', '09-MAY-2021', 100);
+INSERT INTO CONTRIBUTION VALUES('CONTRIB010', 'CH105', 'HU023', 'SRP001', '14-MAY-2021', 100); 
+INSERT INTO CONTRIBUTION VALUES('CONTRIB011', 'CH105', 'HU023', 'KRP001', '29-MAY-2021', 100);
+INSERT INTO CONTRIBUTION VALUES('CONTRIB012', 'CH105', 'DE155', 'LRP001', '11-JUN-2021', 50);
+INSERT INTO CONTRIBUTION VALUES('CONTRIB013', 'SO102', 'GA167', 'KRP001', '18-JUN-2021', 75);
+INSERT INTO CONTRIBUTION VALUES('CONTRIB014', 'SK103', 'GO132', 'BRP001', '23-JUN-2021', 50);
+INSERT INTO CONTRIBUTION VALUES('CONTRIB015', 'SK103', 'ATT123', 'LRP001', '10-JUL-2021', 100);
+INSERT INTO CONTRIBUTION VALUES('CONTRIB016', 'SO102', 'TE145', 'SRP001', '16-JUL-2021', 100);
+INSERT INTO CONTRIBUTION VALUES('CONTRIB017', 'LE106', 'GO132', 'KRP001', '09-SEP-2021', 175);
+INSERT INTO CONTRIBUTION VALUES('CONTRIB018', 'SO102', 'GA167', 'LRP001', '18-SEP-2021', 150);
+INSERT INTO CONTRIBUTION VALUES('CONTRIB019', 'CH105', 'DE122', 'SRP001', '01-OCT-2021', 80);
+INSERT INTO CONTRIBUTION VALUES('CONTRIB020', 'LE106', 'ATT12', 'BRP001', '13-OCT-2021', 50);
+INSERT INTO CONTRIBUTION VALUES('CONTRIB021', 'DA101', 'DE155', 'KRP001', '30-OCT-2021', 25);
+INSERT INTO CONTRIBUTION VALUES('CONTRIB022', 'OB104', 'TE145', 'LRP001', '11-NOV-2021', 100);
+INSERT INTO CONTRIBUTION VALUES('CONTRIB023', 'CH105', 'DE122', 'KRP001', '23-NOV-2021', 100);
+INSERT INTO CONTRIBUTION VALUES('CONTRIB024', 'DA101', 'HU023', 'BRP001', '10-DEC-2021', 200);
+INSERT INTO CONTRIBUTION VALUES('CONTRIB025', 'LE106', 'GO132', 'SRP001', '20-NOV-2021', 85);
+
+Insert of data into Committee_Member table
+
+INSERT INTO COMMITTEE_MEMBER VALUES('DA101', 'Darth');
+INSERT INTO COMMITTEE_MEMBER VALUES('SO102', 'Solo');
+INSERT INTO COMMITTEE_MEMBER VALUES('SK103', 'Skywalker');
+INSERT INTO COMMITTEE_MEMBER VALUES('OB104', 'Obi-Wan');
+INSERT INTO COMMITTEE_MEMBER VALUES('CH105', 'Chewbacca');
+INSERT INTO COMMITTEE_MEMBER VALUES('LE106', 'Leia');
+
+Insert of data into Program_Committee table
+
+INSERT INTO PROGRAM_COMMITTEE VALUES('BRP001', 'DA101');
+INSERT INTO PROGRAM_COMMITTEE VALUES('KRP001', 'SO102');
+INSERT INTO PROGRAM_COMMITTEE VALUES('LRP001', 'SK103');
+INSERT INTO PROGRAM_COMMITTEE VALUES('SRP001', 'OB104');
+ 
+Insert of data into Member_Donor table
+
+INSERT INTO MEMBER_DONOR VALUES('DE122', 'CH105');
+INSERT INTO MEMBER_DONOR VALUES('GO132', 'SK103');
+INSERT INTO MEMBER_DONOR VALUES('HU023', 'DA101');
+INSERT INTO MEMBER_DONOR VALUES('GA167', 'SO102');
+INSERT INTO MEMBER_DONOR VALUES('DE122', 'DA101');
+INSERT INTO MEMBER_DONOR VALUES('ATT123', 'LE106');
+INSERT INTO MEMBER_DONOR VALUES('DE155', 'DA101');
+INSERT INTO MEMBER_DONOR VALUES('GA167', 'OB104');
+INSERT INTO MEMBER_DONOR VALUES('TE145', 'SO102');
+INSERT INTO MEMBER_DONOR VALUES('HU023', 'CH105');
+INSERT INTO MEMBER_DONOR VALUES('HU023', 'CH105');
+INSERT INTO MEMBER_DONOR VALUES('DE155', 'CH105');
+INSERT INTO MEMBER_DONOR VALUES('GA167', 'SO102');
+INSERT INTO MEMBER_DONOR VALUES('GO132', 'SK103');
+INSERT INTO MEMBER_DONOR VALUES('ATT123', 'SK103');
+INSERT INTO MEMBER_DONOR VALUES('TE145', 'SO102');
+INSERT INTO MEMBER_DONOR VALUES('GA167', 'OB104');
+INSERT INTO MEMBER_DONOR VALUES('DE155', 'DA101');
+INSERT INTO MEMBER_DONOR VALUES('DE122', 'DA101');
+INSERT INTO MEMBER_DONOR VALUES('GO132', 'LE106');
+INSERT INTO MEMBER_DONOR VALUES('GA167', 'SO102');
+INSERT INTO MEMBER_DONOR VALUES('DE122', 'CH105');
+INSERT INTO MEMBER_DONOR VALUES('ATT123', 'LE106');
+INSERT INTO MEMBER_DONOR VALUES('DE155', 'DA101');
+INSERT INTO MEMBER_DONOR VALUES('TE145', 'OB104');
+INSERT INTO MEMBER_DONOR VALUES('DE122', 'CH105');
+INSERT INTO MEMBER_DONOR VALUES('HU023', 'DA101');
+INSERT INTO MEMBER_DONOR VALUES('GO132', 'LE106');
+
+Insert of data into CMember_Qtargetvalue table
+
+INSERT INTO cmember_qtarget VALUES(1333, 'DA101', 2021, 200, 200, 250, 250);
+INSERT INTO cmember_qtarget VALUES(1334, 'SO102', 2021, 150, 150, 175, 200);
+INSERT INTO cmember_qtarget VALUES(1335, 'Sk103', 2021, 50, 60, 75, 75);
+INSERT INTO cmember_qtarget VALUES(1336, 'OB104', 2021, 100, 100, 150, 150);
+INSERT INTO cmember_qtarget VALUES(1337, 'CH105', 2021, 250, 300, 325, 400);
+INSERT INTO cmember_qtarget VALUES(1338, 'LE106', 2021, 75, 90, 125, 200);
+
+Insert of data into DonorType_QTarget table
+
+INSERT INTO donortype_qtarget VALUES(1111, 'C', 2021, 400, 400, 500, 500);
+INSERT INTO donortype_qtarget VALUES(2222, 'F', 2021, 300, 350, 400, 500);
+INSERT INTO donortype_qtarget VALUES(3333, 'I', 2021, 125, 150, 200, 275);
+
+Insert of data into DonorType table
+
+INSERT INTO DONORTYPE VALUES('I', 'Individual');
+INSERT INTO DONORTYPE VALUES('F', 'Foundation');
+INSERT INTO DONORTYPE VALUES('C', 'Corporate');
+
+Insert of data into Donor table
+
+INSERT INTO DONOR VALUES('ATT123', 'I', 'ATT', 50);
+INSERT INTO DONOR VALUES('DE122', 'C', 'Delta', 100);
+INSERT INTO DONOR VALUES('GO132', 'I', 'Goldman', 55);
+INSERT INTO DONOR VALUES('TE145', 'F', 'Teresa Foundation', 60);
+INSERT INTO DONOR VALUES('DE155', 'C', 'Dell', 50);
+INSERT INTO DONOR VALUES('GA167', 'F', 'Gates Foundation', 70);
+INSERT INTO DONOR VALUES('HU023', 'C', 'Huss and Associates, LLC', 85);
+
+i. Contributions by campus for the second quarter:
+SELECT CAMPUS_QTARGET.CAMPUSID, CAMPUS.CAMPUSNAME, CAMPUS_QTARGET.Q2
+FROM CAMPUS, CAMPUS_QTARGET
+WHERE CAMPUS.CAMPUSID = CAMPUS_QTARGET.CAMPUSID
+ORDER BY CAMPUSNAME DESC;
+
+ii. Contributions made by foundation donors:
+SELECT * 
+FROM CONTRIBUTION
+WHERE DONORID IN
+    (SELECT DONORID
+    FROM DONOR
+    WHERE DONORTYPEID = 'F');
+
+iii. Donor category contributions by program for the third quarter:
+SELECT C.DONORID, D.DONORTYPEID, C.PROGRAMID, D.DESCRIPTION, C.CONTRIB_DATE, P.PROGRAM_DESC
+FROM DONOR D, CONTRIBUTION C, PROGRAMS P
+WHERE C.DONORID = D.DONORID
+AND C.PROGRAMID = P.PROGRAMID
+AND C.CONTRIB_DATE >= '01-JUL-2021'
+AND C.CONTRIB_DATE <= '30-SEP-2021';
+
+iv. A low activity program report run on September:
+SELECT C.AMOUNT, P.PROGRAM_DESC
+FROM CONTRIBUTION C, PROGRAMS P
+WHERE P.PROGRAMID = C.PROGRAMID
+AND CONTRIB_DATE >= '01-SEP-2021'
+AND CONTRIB_DATE <= '30-SEP-2021';
+
+v. The total dollar contribution for which Skywalker was responsible for:
+SELECT SUM(AMOUNT), MEMBERID
+FROM CONTRIBUTION
+GROUP BY MEMBERID
+HAVING MEMBERID = 'SK103';
+
+vi. The average donation per corporate contribution:
+SELECT AVG(AMOUNT)
+FROM CONTRIBUTION
+WHERE DONORID IN
+    (SELECT DONORID
+    FROM DONOR
+    WHERE DONORTYPEID = 'C');
